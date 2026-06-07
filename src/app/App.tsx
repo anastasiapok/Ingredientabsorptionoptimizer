@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { SmartFinder } from "./components/SmartFinder";
 import { GoalSmoothies } from "./components/GoalSmoothies";
 import { IngredientPicker } from "./components/IngredientPicker";
@@ -22,6 +22,25 @@ export default function App() {
   const [showInteractions, setShowInteractions] = useState(false);
   const [showOptimization, setShowOptimization] = useState(false);
   const [detailModalIngredientId, setDetailModalIngredientId] = useState<string | null>(null);
+  const smoothieHeaderRef = useRef<HTMLHeadingElement>(null);
+  const modalCloseTimerRef = useRef<number | null>(null);
+
+  const handleOpenModal = (id: string) => {
+    if (modalCloseTimerRef.current) {
+      clearTimeout(modalCloseTimerRef.current);
+      modalCloseTimerRef.current = null;
+    }
+    setDetailModalIngredientId(id);
+  };
+
+  const handleCloseModal = () => {
+    if (modalCloseTimerRef.current) {
+      clearTimeout(modalCloseTimerRef.current);
+    }
+    modalCloseTimerRef.current = window.setTimeout(() => {
+      setDetailModalIngredientId(null);
+    }, 100);
+  };
 
   const handleToggleIngredient = (id: string) => {
     setSelectedIngredients((prev) =>
@@ -51,6 +70,15 @@ export default function App() {
     setSelectedIngredients([]);
     setShowInteractions(false);
     setShowOptimization(false);
+  };
+
+  const scrollToSmoothie = () => {
+    setTimeout(() => {
+      smoothieHeaderRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
   };
 
   const selectedIngredientObjects = selectedIngredients
@@ -147,6 +175,7 @@ export default function App() {
               setSelectedIngredients(ids);
               setShowInteractions(false);
               setShowOptimization(false);
+              setActiveTab(2);
             }}
             onSwitchToBuilder={() => setActiveTab(2)}
           />
@@ -190,7 +219,8 @@ export default function App() {
                 <IngredientPicker
                   selectedIngredients={selectedIngredients}
                   onToggleIngredient={handleToggleIngredient}
-                  onIngredientClick={setDetailModalIngredientId}
+                  onIngredientHover={handleOpenModal}
+                  onIngredientLeave={handleCloseModal}
                 />
               </div>
 
@@ -199,7 +229,7 @@ export default function App() {
                 <div className="rounded-xl border border-border bg-secondary/20 p-5">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
-                      <h2 className="text-base font-semibold text-foreground">
+                      <h2 ref={smoothieHeaderRef} className="text-base font-semibold text-foreground">
                         Your Smoothie{" "}
                         <span className="text-muted-foreground font-normal text-sm">
                           ({selectedIngredients.length} ingredient{selectedIngredients.length !== 1 ? "s" : ""})
@@ -238,7 +268,8 @@ export default function App() {
                         <div key={ingredient!.id} className="flex items-center justify-between px-3 py-2 hover:bg-secondary/20 transition-colors group">
                           <div
                             className="flex items-center gap-2 flex-1 cursor-pointer"
-                            onMouseEnter={() => setDetailModalIngredientId(ingredient!.id)}
+                            onMouseEnter={() => handleOpenModal(ingredient!.id)}
+                            onMouseLeave={handleCloseModal}
                           >
                             <span>{ingredient!.emoji}</span>
                             <span className="text-sm text-foreground group-hover:text-primary transition-colors">{ingredient!.name}</span>
@@ -263,7 +294,8 @@ export default function App() {
                     {selectedIngredientObjects.map((ingredient) => (
                       <span
                         key={ingredient!.id}
-                        onMouseEnter={() => setDetailModalIngredientId(ingredient!.id)}
+                        onMouseEnter={() => handleOpenModal(ingredient!.id)}
+                        onMouseLeave={handleCloseModal}
                         className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs text-primary font-medium hover:bg-primary/30 transition-colors cursor-pointer"
                       >
                         {ingredient!.emoji} {ingredient!.name}
@@ -362,7 +394,10 @@ export default function App() {
           <div className="flex flex-col gap-5">
             <InteractionTable />
             <GoalBenefitsEvidence />
-            <TagExplorer onIngredientClick={setDetailModalIngredientId} />
+            <TagExplorer
+              onIngredientHover={handleOpenModal}
+              onIngredientLeave={handleCloseModal}
+            />
           </div>
         )}
       </div>
@@ -371,7 +406,8 @@ export default function App() {
       {detailModalIngredientId && (
         <IngredientDetailModal
           ingredientId={detailModalIngredientId}
-          onClose={() => setDetailModalIngredientId(null)}
+          onClose={handleCloseModal}
+          onMouseEnter={() => handleOpenModal(detailModalIngredientId)}
         />
       )}
     </div>

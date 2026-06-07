@@ -4,7 +4,8 @@ import { ingredients } from "../data/ingredients";
 interface IngredientPickerProps {
   selectedIngredients: string[];
   onToggleIngredient: (id: string) => void;
-  onIngredientClick?: (id: string) => void;
+  onIngredientHover?: (id: string) => void;
+  onIngredientLeave?: () => void;
 }
 
 const frozenMap: Record<string, string> = {
@@ -33,7 +34,7 @@ const otherLiquids = allLiquidIds.filter(id => !commonLiquids.includes(id));
 const allExtraIds = ingredients.filter(i => i.category === 'extra').map(i => i.id);
 const otherExtras = allExtraIds.filter(id => !commonExtras.includes(id));
 
-export function IngredientPicker({ selectedIngredients, onToggleIngredient, onIngredientClick }: IngredientPickerProps) {
+export function IngredientPicker({ selectedIngredients, onToggleIngredient, onIngredientHover, onIngredientLeave }: IngredientPickerProps) {
   const [frozen, setFrozen] = useState(false);
   const [search, setSearch] = useState("");
   const [showOtherFruits, setShowOtherFruits] = useState(false);
@@ -79,7 +80,8 @@ export function IngredientPicker({ selectedIngredients, onToggleIngredient, onIn
     return (
       <button
         onClick={() => onToggleIngredient(id)}
-        onMouseEnter={() => onIngredientClick?.(id)}
+        onMouseEnter={() => onIngredientHover?.(id)}
+        onMouseLeave={() => onIngredientLeave?.()}
         className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all border ${
           selected
             ? "bg-primary text-primary-foreground border-primary"

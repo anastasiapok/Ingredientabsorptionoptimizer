@@ -43,10 +43,11 @@ const categories = ["fruit", "liquid", "extra"] as const;
 const categoryLabels = { fruit: "Fruits & Vegetables", liquid: "Liquids", extra: "Extras" };
 
 interface TagExplorerProps {
-  onIngredientClick?: (ingredientId: string) => void;
+  onIngredientHover?: (ingredientId: string) => void;
+  onIngredientLeave?: () => void;
 }
 
-export function TagExplorer({ onIngredientClick }: TagExplorerProps = {}) {
+export function TagExplorer({ onIngredientHover, onIngredientLeave }: TagExplorerProps = {}) {
   const [openCategories, setOpenCategories] = useState<Set<string>>(new Set());
 
   const toggle = (cat: string) => {
@@ -90,8 +91,9 @@ export function TagExplorer({ onIngredientClick }: TagExplorerProps = {}) {
                     return (
                       <div
                         key={ingredient.id}
-                        className={`px-4 py-3 flex flex-col gap-1.5 bg-background/10 ${onIngredientClick ? 'cursor-pointer hover:bg-primary/5 transition-colors' : ''}`}
-                        onMouseEnter={() => onIngredientClick?.(ingredient.id)}
+                        className={`px-4 py-3 flex flex-col gap-1.5 bg-background/10 ${onIngredientHover ? 'cursor-pointer hover:bg-primary/5 transition-colors' : ''}`}
+                        onMouseEnter={() => onIngredientHover?.(ingredient.id)}
+                        onMouseLeave={() => onIngredientLeave?.()}
                       >
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="text-sm font-medium">

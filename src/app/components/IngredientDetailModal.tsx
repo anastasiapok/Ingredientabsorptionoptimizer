@@ -4,9 +4,10 @@ import { NutrientPopover } from './NutrientPopover';
 interface IngredientDetailModalProps {
   ingredientId: string;
   onClose: () => void;
+  onMouseEnter?: () => void;
 }
 
-export function IngredientDetailModal({ ingredientId, onClose }: IngredientDetailModalProps) {
+export function IngredientDetailModal({ ingredientId, onClose, onMouseEnter }: IngredientDetailModalProps) {
   const detail = ingredientDetails[ingredientId];
 
   if (!detail) {
@@ -14,11 +15,12 @@ export function IngredientDetailModal({ ingredientId, onClose }: IngredientDetai
   }
 
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 pointer-events-none"
-    >
+    <>
+      {/* Sidebar */}
       <div
-        className="bg-card rounded-2xl border border-border max-w-2xl w-full max-h-[80vh] overflow-y-auto pointer-events-auto"
+        className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-card border-l border-border overflow-y-auto pointer-events-auto shadow-2xl animate-fadeIn z-50"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onClose}
       >
         <div className="p-6">
           {/* Header */}
@@ -41,7 +43,8 @@ export function IngredientDetailModal({ ingredientId, onClose }: IngredientDetai
             </div>
             <button
               onClick={onClose}
-              className="text-muted-foreground hover:text-foreground transition-colors text-2xl leading-none"
+              className="text-muted-foreground hover:text-foreground transition-colors text-2xl leading-none shrink-0"
+              aria-label="Close"
             >
               ×
             </button>
@@ -118,6 +121,6 @@ export function IngredientDetailModal({ ingredientId, onClose }: IngredientDetai
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
