@@ -135,10 +135,10 @@ export default function App() {
             Science-backed nutrition
           </div>
           <h1 className="text-5xl font-bold tracking-tight text-white drop-shadow mb-2 flex items-center justify-center gap-3">
-            <span>🧬</span> Smoothily
+            <span>🧬</span> Absorvia
           </h1>
           <p className="text-white/80 text-sm mt-1 mb-5">
-            It's not only what you eat. It's how you combine it.
+            Unlock Your Food's Full Potential
           </p>
           {selectedIngredients.length === 0 && (
             <button

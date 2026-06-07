@@ -97,6 +97,9 @@ export function HowIFeelFinder({ onLoadSmoothie, onSwitchToBuilder }: HowIFeelFi
   };
 
   const generateSmoothie = () => {
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     const smoothieScores = goalSmoothies.map(smoothie => {
       let score = 0;
       let matchedSymptoms: string[] = [];
