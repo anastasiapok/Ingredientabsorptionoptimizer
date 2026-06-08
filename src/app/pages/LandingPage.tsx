@@ -1,3 +1,4 @@
+
 import { useState, FormEvent } from "react";
 import { SpinachIllustration } from "../components/illustrations/Spinach";
 import { LemonIllustration } from "../components/illustrations/Lemon";
@@ -53,7 +54,7 @@ export function LandingPage() {
             <h1 className="text-5xl md:text-6xl leading-[1.1] mb-6">
               You may be<br />
               absorbing <span className="text-[#7c5cbf]">far less</span><br />
-              nutrition than<br />
+              nutrients than<br />
               you think.
             </h1>
             <p className="text-xl text-[#1c1828]/65 mb-8 leading-relaxed max-w-md">
@@ -109,50 +110,50 @@ export function LandingPage() {
             </div>
 
             {/* Phone */}
-            <div className="mx-auto w-[300px] rounded-[2.5rem] border-[6px] border-[#1c1828] bg-white shadow-2xl overflow-hidden">
-              <div className="h-7 bg-[#1c1828] flex items-center justify-center">
-                <div className="w-20 h-4 bg-[#1c1828] rounded-full border border-white/10" />
+            <div className="mx-auto w-[360px] rounded-[2rem] border-[6px] border-[#1c1828] bg-white shadow-2xl overflow-hidden">
+              <div className="h-6 bg-[#1c1828] flex items-center justify-center">
+                <div className="w-20 h-3.5 bg-[#1c1828] rounded-full border border-white/10" />
               </div>
-              <div className="px-5 pt-4 pb-3 flex items-center justify-between">
+              <div className="px-5 pt-3 pb-2 flex items-center justify-between">
                 <span className="font-medium text-lg">Meal Analysis</span>
                 <span className="w-7 h-7 rounded-full bg-[#ece8f6] flex items-center justify-center text-sm">⋯</span>
               </div>
 
               <div className="px-5">
-                <div className="bg-[#f2f7f5] rounded-2xl p-4 flex items-center justify-between mb-4">
+                <div className="bg-[#f2f7f5] rounded-2xl p-3 flex items-center justify-between mb-3">
                   <div>
                     <p className="text-sm text-[#1c1828]/50">Meal Score</p>
-                    <p className="text-3xl">84</p>
+                    <p className="text-2xl">84</p>
                     <p className="text-xs text-[#1c1828]/50">Great balance</p>
                   </div>
-                  <div className="w-14 h-14 rounded-full border-4 border-[#7c5cbf] border-r-[#3dbf9a] border-b-[#3dbf9a]" />
+                  <div className="w-12 h-12 rounded-full border-4 border-[#7c5cbf] border-r-[#3dbf9a] border-b-[#3dbf9a]" />
                 </div>
 
-                <p className="text-sm text-[#1c1828]/50 mb-2">What's happening in your meal</p>
+                <p className="text-sm text-[#1c1828]/50 mb-1.5">What's happening in your meal</p>
 
-                <p className="text-sm text-[#3dbf9a] mb-1.5">Positive Interactions</p>
-                <div className="bg-[#e6f2ee] rounded-xl p-3 mb-2">
+                <p className="text-sm text-[#3dbf9a] mb-1">Positive Interactions</p>
+                <div className="bg-[#e6f2ee] rounded-xl p-2.5 mb-1.5">
                   <p className="text-sm">Vitamin C may enhance iron absorption</p>
                   <p className="text-xs text-[#1c1828]/40">Spinach + Lemon</p>
                 </div>
-                <div className="bg-[#e6f2ee] rounded-xl p-3 mb-3">
+                <div className="bg-[#e6f2ee] rounded-xl p-2.5 mb-2">
                   <p className="text-sm">Healthy fats may improve carotenoid absorption</p>
                   <p className="text-xs text-[#1c1828]/40">Carrot + Avocado</p>
                 </div>
 
-                <p className="text-sm text-[#c1633e] mb-1.5">Potential Inhibitors</p>
-                <div className="bg-[#fbeee5] rounded-xl p-3 mb-3">
+                <p className="text-sm text-[#c1633e] mb-1">Potential Inhibitors</p>
+                <div className="bg-[#fbeee5] rounded-xl p-2.5 mb-2">
                   <p className="text-sm">Tea compounds may reduce iron uptake</p>
                   <p className="text-xs text-[#1c1828]/40">Tea + Iron-rich meal</p>
                 </div>
 
-                <p className="text-sm text-[#7c5cbf] mb-1.5">Suggestion</p>
-                <div className="bg-[#ece8f6] rounded-xl p-3 mb-4">
+                <p className="text-sm text-[#7c5cbf] mb-1">Suggestion</p>
+                <div className="bg-[#ece8f6] rounded-xl p-2.5 mb-3">
                   <p className="text-sm">Move tea consumption 1–2 hours after the meal</p>
                 </div>
               </div>
 
-              <div className="border-t border-[#ece8f6] px-6 py-3 flex items-center justify-between text-xs text-[#1c1828]/40">
+              <div className="border-t border-[#ece8f6] px-6 py-2.5 flex items-center justify-between text-xs text-[#1c1828]/40">
                 <span>Home</span>
                 <span>History</span>
                 <span className="w-9 h-9 rounded-full bg-[#7c5cbf] text-white flex items-center justify-center text-base">+</span>
