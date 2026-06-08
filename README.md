@@ -1,7 +1,7 @@
 
-  # Ingredient Absorption Optimizer
+  # Absorvist
 
-  This is a code bundle for Ingredient Absorption Optimizer. The original project is available at https://www.figma.com/design/Dc5H738mJnGMV7szf5Ln7j/Ingredient-Absorption-Optimizer.
+  This is a code bundle for Absorvist. The original project is available at https://www.figma.com/design/Dc5H738mJnGMV7szf5Ln7j/Absorvist.
 
   ## Running the code
 
