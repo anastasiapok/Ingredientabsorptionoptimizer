@@ -1,7 +1,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-size: 17px;
+  --font-size: 20px;
   --font-sans: 'Cormorant Garamond', Georgia, serif;
   --background: #f2f7f5;
   --foreground: #1c1828;

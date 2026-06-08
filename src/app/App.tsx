@@ -135,10 +135,10 @@ export default function App() {
             Science-backed nutrition
           </div>
           <h1 className="text-5xl font-bold tracking-tight text-white drop-shadow mb-2 flex items-center justify-center gap-3">
-            <span>🧬</span> Absorvia
+            <span>🧬</span> Absorvist
           </h1>
-          <p className="text-white/80 text-sm mt-1 mb-5">
-            Unlock Your Food's Full Potential
+          <p className="text-white text-2xl font-bold mt-1 mb-5">
+            Smart food pairing for better nutrient absorption
           </p>
           {selectedIngredients.length === 0 && (
             <button
