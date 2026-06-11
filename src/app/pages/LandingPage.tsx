@@ -1,11 +1,4 @@
-Landing page code
 import { useState, FormEvent } from "react";
-import { SpinachIllustration } from "../components/illustrations/Spinach";
-import { LemonIllustration } from "../components/illustrations/Lemon";
-import { CarrotIllustration } from "../components/illustrations/Carrot";
-import { AvocadoIllustration } from "../components/illustrations/Avocado";
-import { TeaCupIllustration } from "../components/illustrations/TeaCup";
-import { TurmericIllustration } from "../components/illustrations/Turmeric";
 
 export function LandingPage() {
   const [email, setEmail] = useState("");
@@ -21,342 +14,359 @@ export function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#1c1828]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-      {/* NAV */}
-      <header className="border-b border-[#ece8f6]">
-        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <SpinachIllustration size={28} />
-            <span className="text-2xl tracking-tight">Absorvist</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8 text-base text-[#1c1828]/80">
-            <a href="#how-it-works" className="hover:text-[#7c5cbf] transition-colors">How It Works</a>
-            <a href="#science" className="hover:text-[#7c5cbf] transition-colors">The Science</a>
-            <a href="#about" className="hover:text-[#7c5cbf] transition-colors">About</a>
-          </nav>
-          <a
-            href="#early-access"
-            className="px-6 py-2.5 rounded-full bg-[#7c5cbf] text-white font-medium hover:bg-[#6b4dab] transition-colors"
-          >
-            Join Early Access
-          </a>
-        </div>
-      </header>
+    <div className="min-h-screen bg-white text-gray-900">
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out;
+        }
+        .email-input::placeholder {
+          color: white;
+          opacity: 1;
+        }
+        .gradient-text {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+      `}</style>
 
-      {/* HERO */}
+      {/* HERO SECTION */}
       <section className="relative overflow-hidden">
-        <div className="absolute -right-40 top-10 w-[480px] h-[480px] rounded-full bg-[#e6f2ee] blur-3xl opacity-70" />
-        <div className="absolute -left-32 bottom-0 w-[420px] h-[420px] rounded-full bg-[#ece8f6] blur-3xl opacity-70" />
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-blue-50 opacity-60" />
 
-        <div className="relative max-w-6xl mx-auto px-6 py-20 md:py-28 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left copy */}
-          <div>
-            <h1 className="text-5xl md:text-6xl leading-[1.1] mb-6">
-              You may be<br />
-              absorbing <span className="text-[#7c5cbf]">far less</span><br />
-              nutrients than<br />
-              you think.
+        <div className="relative max-w-6xl mx-auto px-6 py-20 md:py-32">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Headline */}
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+              You may be absorbing<br />
+              <span className="gradient-text">far fewer nutrients</span><br />
+              than you think.
             </h1>
-            <p className="text-xl text-[#1c1828]/65 mb-8 leading-relaxed max-w-md">
-              Even healthy meals can contain combinations that help—or hinder—nutrient
-              absorption. Absorvist reveals what happens after the food reaches your plate.
+
+            {/* Subheadline */}
+            <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Even healthy meals can contain combinations that help—or hinder—nutrient absorption.
+              <strong className="text-purple-600"> Absorvist </strong> reveals what happens after the food reaches your plate.
             </p>
-            <div className="flex items-center gap-6 mb-8">
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <a
                 href="#early-access"
-                className="px-8 py-3.5 rounded-full bg-[#7c5cbf] text-white text-lg font-medium hover:bg-[#6b4dab] transition-colors"
+                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105"
               >
                 Join Early Access
               </a>
-              <a href="/app" className="flex items-center gap-2 text-lg text-[#1c1828]/80 hover:text-[#7c5cbf] transition-colors">
-                <span className="w-8 h-8 rounded-full border border-[#1c1828]/30 flex items-center justify-center">▶</span>
-                See It In Action
+              <a
+                href="/app"
+                className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-900 text-lg font-semibold rounded-xl hover:border-purple-300 transition-all duration-300"
+              >
+                Try Demo App
               </a>
             </div>
-            <p className="text-base text-[#1c1828]/50 flex items-center gap-2">
-              <span>🛡</span> Built on nutrition science. Designed for real life.
+
+            {/* Supporting text */}
+            <p className="text-gray-500 text-base max-w-2xl mx-auto">
+              Most nutrition apps track what you eat. <strong className="text-purple-600"> Absorvist </strong> helps you understand what your body may actually absorb.
             </p>
           </div>
 
-          {/* Right visual: phone mockup with annotated ingredients */}
-          <div className="relative">
-            {/* Annotation: top left */}
-            <div className="absolute -left-4 top-6 hidden md:block">
-              <div className="flex items-center gap-2 mb-2">
-                <SpinachIllustration size={36} />
-                <LemonIllustration size={32} />
-              </div>
-              <p className="font-medium">Spinach<br />+<br />Lemon</p>
-              <p className="text-[#3dbf9a] text-sm mt-1">Increased<br />Iron Absorption</p>
-            </div>
-
-            {/* Annotation: bottom left */}
-            <div className="absolute -left-4 bottom-10 hidden md:block">
-              <div className="flex items-center gap-2 mb-2">
-                <CarrotIllustration size={32} />
-                <AvocadoIllustration size={36} />
-              </div>
-              <p className="font-medium">Carrot<br />+<br />Avocado</p>
-              <p className="text-[#3dbf9a] text-sm mt-1">Improved<br />Carotenoid Uptake</p>
-            </div>
-
-            {/* Annotation: right */}
-            <div className="absolute -right-2 top-1/2 -translate-y-1/2 hidden md:block text-right">
-              <div className="flex items-center justify-end mb-2">
-                <TeaCupIllustration size={36} />
-              </div>
-              <p className="font-medium">Tea<br />+<br />Iron-Rich Meal</p>
-              <p className="text-[#7c5cbf] text-sm mt-1">Reduced<br />Iron Absorption</p>
-            </div>
-
-            {/* Phone */}
-            <div className="mx-auto w-[360px] rounded-[2rem] border-[6px] border-[#1c1828] bg-white shadow-2xl overflow-hidden">
-              <div className="h-6 bg-[#1c1828] flex items-center justify-center">
-                <div className="w-20 h-3.5 bg-[#1c1828] rounded-full border border-white/10" />
-              </div>
-              <div className="px-5 pt-3 pb-2 flex items-center justify-between">
-                <span className="font-medium text-lg">Meal Analysis</span>
-                <span className="w-7 h-7 rounded-full bg-[#ece8f6] flex items-center justify-center text-sm">⋯</span>
-              </div>
-
-              <div className="px-5">
-                <div className="bg-[#f2f7f5] rounded-2xl p-3 flex items-center justify-between mb-3">
-                  <div>
-                    <p className="text-sm text-[#1c1828]/50">Meal Score</p>
-                    <p className="text-2xl">84</p>
-                    <p className="text-xs text-[#1c1828]/50">Great balance</p>
+          {/* Hero Visual - Nutrient Pathways */}
+          <div className="mt-16 relative">
+            <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {/* Interaction 1 */}
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-4xl" style={{ animation: 'float 3s ease-in-out infinite' }}>🥬</div>
+                    <div className="text-xl text-gray-400">+</div>
+                    <div className="text-4xl" style={{ animation: 'float 3s ease-in-out infinite 0.5s' }}>🍋</div>
                   </div>
-                  <div className="w-12 h-12 rounded-full border-4 border-[#7c5cbf] border-r-[#3dbf9a] border-b-[#3dbf9a]" />
+                  <h3 className="text-base font-bold text-green-900 mb-1">Spinach + Lemon</h3>
+                  <p className="text-sm text-green-800">Vitamin C may enhance non-heme iron absorption.</p>
                 </div>
 
-                <p className="text-sm text-[#1c1828]/50 mb-1.5">What's happening in your meal</p>
-
-                <p className="text-sm text-[#3dbf9a] mb-1">Positive Interactions</p>
-                <div className="bg-[#e6f2ee] rounded-xl p-2.5 mb-1.5">
-                  <p className="text-sm">Vitamin C may enhance iron absorption</p>
-                  <p className="text-xs text-[#1c1828]/40">Spinach + Lemon</p>
-                </div>
-                <div className="bg-[#e6f2ee] rounded-xl p-2.5 mb-2">
-                  <p className="text-sm">Healthy fats may improve carotenoid absorption</p>
-                  <p className="text-xs text-[#1c1828]/40">Carrot + Avocado</p>
-                </div>
-
-                <p className="text-sm text-[#c1633e] mb-1">Potential Inhibitors</p>
-                <div className="bg-[#fbeee5] rounded-xl p-2.5 mb-2">
-                  <p className="text-sm">Tea compounds may reduce iron uptake</p>
-                  <p className="text-xs text-[#1c1828]/40">Tea + Iron-rich meal</p>
+                {/* Interaction 2 */}
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-4xl" style={{ animation: 'float 3s ease-in-out infinite 0.3s' }}>🥕</div>
+                    <div className="text-xl text-gray-400">+</div>
+                    <div className="text-4xl" style={{ animation: 'float 3s ease-in-out infinite 0.8s' }}>🥑</div>
+                  </div>
+                  <h3 className="text-base font-bold text-green-900 mb-1">Carrot + Avocado</h3>
+                  <p className="text-sm text-green-800">Dietary fats may improve absorption of carotenoids and fat-soluble vitamins.</p>
                 </div>
 
-                <p className="text-sm text-[#7c5cbf] mb-1">Suggestion</p>
-                <div className="bg-[#ece8f6] rounded-xl p-2.5 mb-3">
-                  <p className="text-sm">Move tea consumption 1–2 hours after the meal</p>
+                {/* Interaction 3 */}
+                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border border-yellow-200 rounded-2xl p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-4xl" style={{ animation: 'float 3s ease-in-out infinite 0.6s' }}>🍵</div>
+                    <div className="text-xl text-gray-400">+</div>
+                    <div className="text-4xl" style={{ animation: 'float 3s ease-in-out infinite 1s' }}>🥩</div>
+                  </div>
+                  <h3 className="text-base font-bold text-yellow-900 mb-1">Tea + Iron-Rich Meals</h3>
+                  <p className="text-sm text-yellow-800">Certain compounds may reduce iron absorption.</p>
                 </div>
-              </div>
 
-              <div className="border-t border-[#ece8f6] px-6 py-2.5 flex items-center justify-between text-xs text-[#1c1828]/40">
-                <span>Home</span>
-                <span>History</span>
-                <span className="w-9 h-9 rounded-full bg-[#7c5cbf] text-white flex items-center justify-center text-base">+</span>
-                <span>Insights</span>
-                <span>Profile</span>
+                {/* Interaction 4 */}
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-4xl" style={{ animation: 'float 3s ease-in-out infinite 0.2s' }}>🌿</div>
+                    <div className="text-xl text-gray-400">+</div>
+                    <div className="text-4xl" style={{ animation: 'float 3s ease-in-out infinite 0.7s' }}>🌶️</div>
+                  </div>
+                  <h3 className="text-base font-bold text-green-900 mb-1">Turmeric + Black Pepper</h3>
+                  <p className="text-sm text-green-800">Piperine may improve curcumin bioavailability.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* PROBLEM STRIP */}
-      <section className="py-6 border-y border-[#ece8f6] bg-[#faf9fc]">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex items-start gap-4">
-            <span className="w-10 h-10 rounded-full bg-[#e6f2ee] flex items-center justify-center text-[#3dbf9a]">🍽</span>
-            <p className="text-lg">What you eat<br /><span className="text-[#1c1828]/50">≠ what you absorb</span></p>
+      {/* PROBLEM SECTION */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Healthy ingredients don't always<br />guarantee optimal nutrients.
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Many nutrients depend on other foods for effective absorption. Others compete with each other.
+              Yet most people never see these interactions.
+            </p>
           </div>
-          <div className="flex items-start gap-4">
-            <span className="w-10 h-10 rounded-full bg-[#ece8f6] flex items-center justify-center text-[#7c5cbf]">⚛</span>
-            <p className="text-lg">Hundreds of nutrient interactions occur<br /><span className="text-[#1c1828]/50">inside every meal</span></p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Stat Card 1 */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+              <div className="text-5xl font-bold gradient-text mb-4">≠</div>
+              <p className="text-xl font-semibold text-gray-900 mb-2">What you eat ≠<br />what you absorb</p>
+            </div>
+
+            {/* Stat Card 2 */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+              <div className="text-5xl font-bold gradient-text mb-4">100s</div>
+              <p className="text-xl font-semibold text-gray-900 mb-2">Hundreds of nutrient interactions occur inside every meal</p>
+            </div>
+
+            {/* Stat Card 3 */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+              <div className="text-5xl font-bold gradient-text mb-4">0</div>
+              <p className="text-xl font-semibold text-gray-900 mb-2">Most nutrition tracking tools ignore absorption entirely</p>
+            </div>
           </div>
-          <div className="flex items-start gap-4">
-            <span className="w-10 h-10 rounded-full bg-[#e6f2ee] flex items-center justify-center text-[#3dbf9a]">🛡</span>
-            <p className="text-lg">Most nutrition tracking tools<br /><span className="text-[#1c1828]/50">ignore absorption entirely</span></p>
+        </div>
+      </section>
+
+      {/* PRODUCT PREVIEW */}
+      <section id="product-preview" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-3xl p-8 md:p-16 shadow-xl border border-gray-100">
+            <div className="max-w-4xl mx-auto">
+              {/* Mock App Screenshot */}
+              <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+                {/* App Header */}
+                <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 text-white">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-2xl font-bold">🧬 Absorvist</h3>
+                    <div className="text-sm bg-white/20 backdrop-blur px-3 py-1 rounded-full">Today's Meal</div>
+                  </div>
+                </div>
+
+                {/* App Content */}
+                <div className="p-6 md:p-8">
+                  {/* Meal Score */}
+                  <div className="text-center mb-8 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-6">
+                    <p className="text-sm text-gray-600 mb-2">Meal Score</p>
+                    <div className="text-6xl font-bold gradient-text mb-2">84</div>
+                    <p className="text-sm text-gray-500">Good absorption potential</p>
+                  </div>
+
+                  {/* Positive Interactions */}
+                  <div className="mb-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Positive Interactions</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-3 bg-green-50 border border-green-200 rounded-lg p-4">
+                        <span className="text-xl">✓</span>
+                        <p className="text-sm text-green-800">Vitamin C may enhance iron absorption</p>
+                      </div>
+                      <div className="flex items-start gap-3 bg-green-50 border border-green-200 rounded-lg p-4">
+                        <span className="text-xl">✓</span>
+                        <p className="text-sm text-green-800">Healthy fats may improve carotenoid absorption</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Potential Inhibitors */}
+                  <div className="mb-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Potential Inhibitors</h4>
+                    <div className="flex items-start gap-3 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                      <span className="text-xl">⚠</span>
+                      <p className="text-sm text-yellow-800">Tea compounds may reduce iron uptake</p>
+                    </div>
+                  </div>
+
+                  {/* Suggested Optimization */}
+                  <div className="bg-purple-50 border border-purple-200 rounded-xl p-4">
+                    <h4 className="text-sm font-semibold text-purple-900 mb-2">💡 Suggested Optimization</h4>
+                    <p className="text-sm text-purple-800">Move tea consumption 1–2 hours after the meal</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-center text-gray-500 mt-8 text-lg">Actionable insights in seconds.</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="py-24">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-center text-[#7c5cbf] tracking-widest text-sm uppercase mb-3">How It Works</p>
-          <h2 className="text-center text-4xl md:text-5xl mb-16">
-            Understand your meals<br />on a deeper level.
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Understand your meals<br />on a deeper level.
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Step 1 */}
             <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="w-9 h-9 rounded-full bg-[#e6f2ee] text-[#3dbf9a] flex items-center justify-center text-sm">1</span>
-                <span className="text-2xl">🌿</span>
-              </div>
-              <h3 className="text-2xl mb-2">Input your ingredients</h3>
-              <p className="text-[#1c1828]/55">Enter ingredients manually or build a complete meal.</p>
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">1</div>
+              <h3 className="text-2xl font-bold mb-4">Input your ingredients</h3>
+              <p className="text-gray-600">Enter ingredients manually or build a complete meal.</p>
             </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="w-9 h-9 rounded-full bg-[#ece8f6] text-[#7c5cbf] flex items-center justify-center text-sm">2</span>
-                <span className="text-2xl">⚛</span>
-              </div>
-              <h3 className="text-2xl mb-2">Analyze interactions</h3>
-              <p className="text-[#1c1828]/55">Absorvist evaluates nutrient synergies and potential inhibitors.</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="w-9 h-9 rounded-full bg-[#e6f2ee] text-[#3dbf9a] flex items-center justify-center text-sm">3</span>
-                <span className="text-2xl">📊</span>
-              </div>
-              <h3 className="text-2xl mb-2">Optimize absorption</h3>
-              <p className="text-[#1c1828]/55">Receive practical suggestions backed by nutrition science.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* EXAMPLE INSIGHTS */}
-      <section id="science" className="py-24 bg-[#faf9fc]">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="text-[#7c5cbf] tracking-widest text-sm uppercase mb-3">See what most nutrition apps miss</p>
-              <h2 className="text-4xl md:text-5xl">Example insights</h2>
+            {/* Step 2 */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">2</div>
+              <h3 className="text-2xl font-bold mb-4">Analyze interactions</h3>
+              <p className="text-gray-600"><strong className="text-purple-600"> Absorvist </strong> evaluates nutrient synergies and potential inhibitors.</p>
             </div>
-            <a href="#early-access" className="hidden md:block text-[#7c5cbf] hover:text-[#6b4dab] transition-colors">
-              Explore all interactions →
-            </a>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-2xl border border-[#ece8f6] p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <SpinachIllustration size={40} />
-                <LemonIllustration size={36} />
-              </div>
-              <h3 className="text-xl mb-2">Spinach + Lemon</h3>
-              <p className="text-[#1c1828]/55 mb-4">Vitamin C may enhance non-heme iron absorption.</p>
-              <span className="inline-flex items-center gap-1 text-sm text-[#3dbf9a] bg-[#e6f2ee] px-3 py-1 rounded-full">↑ Synergy</span>
-            </div>
-            <div className="bg-white rounded-2xl border border-[#ece8f6] p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <CarrotIllustration size={36} />
-                <AvocadoIllustration size={40} />
-              </div>
-              <h3 className="text-xl mb-2">Carrot + Avocado</h3>
-              <p className="text-[#1c1828]/55 mb-4">Dietary fats may improve absorption of carotenoids and fat-soluble vitamins.</p>
-              <span className="inline-flex items-center gap-1 text-sm text-[#3dbf9a] bg-[#e6f2ee] px-3 py-1 rounded-full">↑ Synergy</span>
-            </div>
-            <div className="bg-white rounded-2xl border border-[#ece8f6] p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <TeaCupIllustration size={40} />
-              </div>
-              <h3 className="text-xl mb-2">Tea + Iron-Rich Meals</h3>
-              <p className="text-[#1c1828]/55 mb-4">Certain compounds may reduce iron absorption.</p>
-              <span className="inline-flex items-center gap-1 text-sm text-[#7c5cbf] bg-[#ece8f6] px-3 py-1 rounded-full">↑ Inhibitor</span>
-            </div>
-            <div className="bg-white rounded-2xl border border-[#ece8f6] p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <TurmericIllustration size={40} />
-              </div>
-              <h3 className="text-xl mb-2">Turmeric + Black Pepper</h3>
-              <p className="text-[#1c1828]/55 mb-4">Piperine may improve curcumin bioavailability.</p>
-              <span className="inline-flex items-center gap-1 text-sm text-[#3dbf9a] bg-[#e6f2ee] px-3 py-1 rounded-full">↑ Synergy</span>
+            {/* Step 3 */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">3</div>
+              <h3 className="text-2xl font-bold mb-4">Optimize absorption</h3>
+              <p className="text-gray-600">Receive practical suggestions backed by nutrition science.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* WHY ABSORVIST */}
-      <section id="about" className="py-24">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-center text-4xl md:text-5xl mb-16">
-            Nutrient intelligence,<br />not just nutrition tracking.
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Nutrient intelligence,<br />not just nutrition tracking.
+            </h2>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-2xl border border-[#ece8f6] p-8">
-              <span className="w-12 h-12 rounded-full bg-[#ece8f6] flex items-center justify-center text-xl mb-4">🔬</span>
-              <h3 className="text-2xl mb-2">Food Interaction Analysis</h3>
-              <p className="text-[#1c1828]/55">Understand how ingredients affect one another.</p>
+            {/* Feature 1 */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+              <div className="text-4xl mb-4">🔬</div>
+              <h3 className="text-2xl font-bold mb-3">Food Interaction Analysis</h3>
+              <p className="text-gray-600">Understand how ingredients affect one another.</p>
             </div>
-            <div className="bg-white rounded-2xl border border-[#ece8f6] p-8">
-              <span className="w-12 h-12 rounded-full bg-[#e6f2ee] flex items-center justify-center text-xl mb-4">📚</span>
-              <h3 className="text-2xl mb-2">Science-Based Recommendations</h3>
-              <p className="text-[#1c1828]/55">Insights informed by published nutrition research.</p>
+
+            {/* Feature 2 */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+              <div className="text-4xl mb-4">📚</div>
+              <h3 className="text-2xl font-bold mb-3">Science-Based Recommendations</h3>
+              <p className="text-gray-600">Insights informed by published nutrition research.</p>
             </div>
-            <div className="bg-white rounded-2xl border border-[#ece8f6] p-8">
-              <span className="w-12 h-12 rounded-full bg-[#ece8f6] flex items-center justify-center text-xl mb-4">✨</span>
-              <h3 className="text-2xl mb-2">Simple and Actionable</h3>
-              <p className="text-[#1c1828]/55">Clear suggestions without scientific complexity.</p>
+
+            {/* Feature 3 */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+              <div className="text-4xl mb-4">✨</div>
+              <h3 className="text-2xl font-bold mb-3">Simple and Actionable</h3>
+              <p className="text-gray-600">Clear suggestions without scientific complexity.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <section id="early-access" className="py-6">
-        <div className="max-w-6xl mx-auto px-6 pb-20">
-          <div className="rounded-3xl bg-gradient-to-br from-[#e6f2ee] to-[#ece8f6] p-10 md:p-14 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl mb-3">
-                Be among the first to discover what your meals are really delivering.
-              </h2>
-              <p className="text-[#1c1828]/60">
-                Join the early access list and help shape the future of nutrient optimization.
-              </p>
-            </div>
-            <form onSubmit={handleSubmit}>
-              {submitted ? (
-                <div className="bg-white rounded-xl px-6 py-5 text-center">
-                  <p className="text-xl">✓ Thank you!</p>
-                  <p className="text-sm text-[#1c1828]/50 mt-1">We'll be in touch soon.</p>
+      <section id="early-access" className="py-20 bg-gradient-to-br from-purple-600 to-indigo-600 text-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Be among the first to discover<br />what your meals are really delivering.
+          </h2>
+          <p className="text-xl text-purple-100 mb-8">
+            Join the early access list and help shape the future of nutrient optimization.
+          </p>
+
+          <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+            {submitted ? (
+              <div className="bg-white text-purple-600 px-8 py-6 rounded-xl text-center">
+                <div className="text-4xl mb-3">✓</div>
+                <p className="text-xl font-semibold">Thank you!</p>
+                <p className="text-sm mt-2">We'll be in touch soon.</p>
+              </div>
+            ) : (
+              <>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                    className="email-input flex-1 px-6 py-4 rounded-xl text-gray-900 text-lg focus:outline-none focus:ring-4 focus:ring-purple-300"
+                  />
+                  <button
+                    type="submit"
+                    className="px-8 py-4 bg-white text-purple-600 text-lg font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  >
+                    Get Early Access
+                  </button>
                 </div>
-              ) : (
-                <>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email"
-                      required
-                      className="flex-1 px-5 py-3.5 rounded-full border border-[#ddd8f0] bg-white text-[#1c1828] focus:outline-none focus:ring-2 focus:ring-[#7c5cbf]"
-                    />
-                    <button
-                      type="submit"
-                      className="px-7 py-3.5 rounded-full bg-[#7c5cbf] text-white font-medium hover:bg-[#6b4dab] transition-colors"
-                    >
-                      Get Early Access
-                    </button>
-                  </div>
-                  <p className="text-sm text-[#1c1828]/45 mt-3">No spam. Unsubscribe anytime.</p>
-                </>
-              )}
-            </form>
-          </div>
+                <p className="text-sm text-purple-200 mt-4">No spam. Unsubscribe anytime.</p>
+              </>
+            )}
+          </form>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-[#ece8f6] py-12">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <SpinachIllustration size={24} />
-            <span className="text-xl">Absorvist</span>
-            <span className="text-[#1c1828]/40 text-base ml-2">Helping you get more from every meal.</span>
+      <footer className="bg-gray-50 border-t border-gray-200 py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-center md:text-left">
+              <div className="text-2xl font-bold gradient-text mb-2">🧬 Absorvist</div>
+              <p className="text-gray-600">Helping you get more from every meal.</p>
+            </div>
+
+            <div className="flex gap-6">
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Contact</a>
+              <a href="#" className="text-gray-600 hover:text-purple-600 transition-colors">Instagram</a>
+            </div>
           </div>
-          <div className="flex gap-6 text-[#1c1828]/60">
-            <a href="#" className="hover:text-[#7c5cbf] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#7c5cbf] transition-colors">Contact</a>
-            <a href="#" className="hover:text-[#7c5cbf] transition-colors">Instagram</a>
+
+          <div className="text-center text-gray-500 text-sm mt-8">
+            © 2026 Absorvist
           </div>
         </div>
-        <p className="text-center text-[#1c1828]/40 text-sm mt-8">© 2026 Absorvist</p>
       </footer>
     </div>
   );
