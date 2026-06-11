@@ -1,6 +1,4 @@
 Landing page code
-
-
 import { useState, FormEvent } from "react";
 import { SpinachIllustration } from "../components/illustrations/Spinach";
 import { LemonIllustration } from "../components/illustrations/Lemon";
